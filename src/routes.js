@@ -1,9 +1,7 @@
 const express = require('express');
-
 const routes = express.Router();
 
 const ProductsController = require('./controllers/ProductsController');
-
 
 // Primeira rota
 routes.get('/products', ProductsController.index);

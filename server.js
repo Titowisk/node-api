@@ -3,14 +3,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 
-// Inicia a aplicação 
+// Inicia a aplicação
 const app = express();
 app.use(express.json()); // permite à aplicação aceitar body em formato JSON
+app.use(cors());
 
 // Inicia o DB
 mongoose.connect('mongodb://localhost:27017/nodeapi', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 });
 requireDir('./src/models');
 
@@ -18,6 +19,5 @@ requireDir('./src/models');
  * Toda rota que começar por /api, será gerenciada pelo path fornecido
  */
 app.use('/api', require('./src/routes'));
-app.use(cors());
 
 app.listen(3001);
